@@ -1,0 +1,29 @@
+<app-carousel></app-carousel>
+<h1>Categorías</h1>
+<div>
+  <!-- Aquí iría el contenido de la página principal -->
+  <div class="bestrecipes-list">
+    <div *ngFor="let category of categories.slice(0, 5)">
+      <div class="card-recipe">
+        <img src="{{category.imageUrl}}" class="card-img-top" alt="Salado" />
+        <div class="card-body-recipe">
+          <p class="category-text">{{category.name}}</p>
+          <a [routerLink]="['/categoria', category.name]" class="btn btn-primary">Ver categoria</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1>Recetas recientes</h1>
+  <div class="bestrecipes-list">
+    <div *ngFor="let recipe of recipes.slice(0, 5)">
+      <div class="card-recipe">
+        <img src="{{recipe.imageUrl}}" class="card-img-top" alt="Salado" />
+        <div class="card-body-recipe">
+          <p class="description-text">{{recipe.description}}</p>
+          <a [routerLink]="['/receta', recipe.id]" class="btn btn-primary">Ir a la receta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

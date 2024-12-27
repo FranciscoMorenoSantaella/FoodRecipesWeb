@@ -1,0 +1,25 @@
+<div class="carousel-container mx-auto">
+  <div id="carouselExampleCaptions" class="carousel slide carousel-size" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button *ngFor="let recipe of recipes.slice(0,3); let i = index" type="button" data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="i" [attr.aria-label]="'Slide ' + (i+1)" [class.active]="i === 0"></button>
+    </div>
+    <div class="carousel-inner">
+      <div *ngFor="let recipe of recipes.slice(0, 3); let i = index" [ngClass]="{'carousel-item': true, 'active': i === 0}">
+        <img [src]="recipe.imageUrl" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block carousel-text">
+          <h5>{{ recipe.name }}</h5>
+          <p>{{ recipe.description }}</p>
+          <button [routerLink]="['/receta', recipe.id]" class="btn btn-primary">Ver receta</button>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>

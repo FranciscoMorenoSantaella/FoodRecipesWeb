@@ -1,0 +1,21 @@
+<div class="recipe-list-container">
+    <h1>Nuestras Categorias</h1>
+    
+    <div class="recipe-grid">
+      <div *ngFor="let category of categories" class="recipe-card">
+        <img [src]="category.imageUrl" [alt]="category.name" class="recipe-image">
+        <div class="recipe-content">
+          <h2>{{ category.name }}</h2>
+          <a [routerLink]="['/categoria', category.name]" class="view-recipe-btn">Ver categoria</a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage === 0">Anterior</button>
+      <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+body, html {
+    background-color: #F4F6F4 !important;  /* Aquí puedes poner el color que desees */
+    margin: 0; /* Eliminar márgenes predeterminados */
+    padding: 0; /* Eliminar el padding predeterminado */
+    height: 100%; /* Asegura que el body ocupe todo el alto de la pantalla */
+}
