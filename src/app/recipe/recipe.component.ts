@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipesService } from '../services/recipes.service';
 import { CommonModule } from '@angular/common';
+import { AlertService } from '../services/alert.service';
 @Component({
   selector: 'app-recipe',
   imports: [CommonModule],
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class RecipeComponent {
   recipeId: number | null = null;
   recipe: any;
-  constructor(private route: ActivatedRoute, private recipeService: RecipesService) { }
+  constructor(private route: ActivatedRoute, private recipeService: RecipesService,private alertService:AlertService) { }
 
   ngOnInit(): void {
     // Obtiene el parámetro 'id' de la URL
@@ -26,7 +27,7 @@ export class RecipeComponent {
           );
         },
         error: (err) => {
-          console.error('Error al obtener las recetas:', err);
+          this.alertService.showErrorMessage("Error al cargar la receta")
         }
       });
     }   // Aquí puedes cargar la receta con el ID

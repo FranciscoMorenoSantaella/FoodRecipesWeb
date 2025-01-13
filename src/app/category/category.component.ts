@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CategoriesService } from '../services/categories.service';
 import { CommonModule } from '@angular/common';
 import { RecipesService } from '../services/recipes.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-category',
@@ -18,7 +19,7 @@ export class CategoryComponent {
   totalPages = 0;
   pageSize = 6;
 
-  constructor(private recipeService: RecipesService, private route: ActivatedRoute) { } // Inject your service here
+  constructor(private recipeService: RecipesService, private route: ActivatedRoute, private alertService:AlertService) { } // Inject your service here
 
   ngOnInit() {
 
@@ -40,7 +41,7 @@ export class CategoryComponent {
         this.currentPage = response.number;
       },
       error: (error: any) => {
-        console.error('Error loading recipes:', error);
+        this.alertService.showErrorMessage("Error al cargar las recetas");
       }
     });
     console.log("estos son los postres: " + this.recipes)

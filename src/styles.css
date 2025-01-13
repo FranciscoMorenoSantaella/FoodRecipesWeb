@@ -5,3 +5,13 @@ body, html {
     padding: 0; /* Eliminar el padding predeterminado */
     height: 100%; /* Asegura que el body ocupe todo el alto de la pantalla */
 }
+
+app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que la altura mínima de la raíz de la app ocupe toda la ventana */
+  }
+
+  .page-container {
+    flex: 1; /* Hace que el contenido ocupe el espacio restante */
+  }

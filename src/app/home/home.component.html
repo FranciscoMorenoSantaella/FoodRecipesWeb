@@ -5,7 +5,7 @@
   <div class="bestrecipes-list">
     <div *ngFor="let category of categories.slice(0, 5)">
       <div class="card-recipe">
-        <img src="{{category.imageUrl}}" class="card-img-top" alt="Salado" />
+        <img src="{{category.imageUrl}}" class="card-img-top" />
         <div class="card-body-recipe">
           <p class="category-text">{{category.name}}</p>
           <a [routerLink]="['/categoria', category.name]" class="btn btn-primary">Ver categoria</a>
@@ -18,7 +18,7 @@
   <div class="bestrecipes-list">
     <div *ngFor="let recipe of recipes.slice(0, 5)">
       <div class="card-recipe">
-        <img src="{{recipe.imageUrl}}" class="card-img-top" alt="Salado" />
+        <img src="{{recipe.imageUrl}}" class="card-img-top"/>
         <div class="card-body-recipe">
           <p class="description-text">{{recipe.description}}</p>
           <a [routerLink]="['/receta', recipe.id]" class="btn btn-primary">Ir a la receta</a>

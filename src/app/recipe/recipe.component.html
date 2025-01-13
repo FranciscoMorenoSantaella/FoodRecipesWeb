@@ -5,14 +5,14 @@
       <img [src]="recipe.imageUrl" [alt]="recipe.name">
     </div>
     
-    <div class="recipe-info">
-      <p>{{recipe.description}}</p>
+    <div class="recipe-div">
+      <p><strong>Descripción:</strong> {{recipe.description}}</p>
       <p><strong>Tiempo de preparación:</strong> {{recipe.time}} {{recipe.units}}</p>
       <p><strong>Dificultad:</strong> {{recipe.difficulty}}</p>
     </div>
     
-    <div class="recipe-categories">
-      <h2>Categorías:</h2>
+    <h2>Categorías</h2>
+    <div class="recipe-div">
       <ul>
         <li *ngFor="let cat of recipe.recipeCategories">
           {{cat.category.name}}
@@ -20,20 +20,20 @@
       </ul>
     </div>
     
-    <div class="recipe-ingredients">
-      <h2>Ingredientes:</h2>
+    <h2>Ingredientes</h2>
+    <div class="recipe-div">
       <ul>
         <li *ngFor="let ing of recipe.recipeIngredients">
-          {{ing.quantity}} - {{ing.ingredient.name}}
-          <span *ngIf="ing.ingredient.alergenos !== 'Ninguno'" class="allergen">
+          {{ing.ingredient.name}} - <strong>{{ing.quantity}} {{ing.type_quantity}}</strong>
+          <span *ngIf="ing.ingredient.alergenos !== null" class="allergen">
             (Alérgeno: {{ing.ingredient.alergenos}})
           </span>
         </li>
       </ul>
     </div>
     
-    <div class="recipe-steps">
-      <h2>Pasos:</h2>
+    <h2>Pasos a seguir</h2>
+    <div class="recipe-div">
       <ol>
         <li *ngFor="let step of recipe.steps">{{step}}</li>
       </ol>

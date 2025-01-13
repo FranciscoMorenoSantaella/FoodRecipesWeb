@@ -4,6 +4,7 @@ import { NgFor } from '@angular/common';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { RecipesService } from '../services/recipes.service';
 import { CategoriesService } from '../services/categories.service';
+import { AlertService } from '../services/alert.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -38,28 +39,28 @@ export class HomeComponent {
     'BAR': 'Barbacoa'
   }
 
-  constructor(private categoriesService:CategoriesService, private recipeService: RecipesService){
+  constructor(private categoriesService:CategoriesService, private recipeService: RecipesService, private alertService: AlertService){
 
   }
   ngOnInit(): void {
+   
     this.categoriesService.getCategories().subscribe({
       next: (data) => {
         this.categories = data;
         console.log('Categorias obtenidas:', this.categories);
       },
       error: (err) => {
-        console.error('Error al obtener categorias:', err);
+        this.alertService.showErrorMessage("Error al cargar las categorias")
       }
     });
 
     this.recipeService.getRecipes().subscribe({
       next: (data) => {
         this.recipes = data;
-        console.log('Recetas obtenidas:', this.recipes
-        );
+        console.log('Recetas obtenidas:', this.recipes);
       },
       error: (err) => {
-        console.error('Error al obtener las recetas:', err);
+        this.alertService.showErrorMessage("Error al cargar las categorias")
       }
     });
   }

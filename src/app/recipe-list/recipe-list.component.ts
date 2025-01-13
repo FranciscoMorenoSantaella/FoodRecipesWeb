@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RecipesService } from '../services/recipes.service';
+import { AlertService } from '../services/alert.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class RecipeListComponent {
   totalPages = 0;
   pageSize = 6;
 
-  constructor(private recipeService:RecipesService, private route: ActivatedRoute) {} // Inject your service here
+  constructor(private recipeService:RecipesService, private route: ActivatedRoute, private alertService:AlertService) {} // Inject your service here
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -29,6 +30,7 @@ export class RecipeListComponent {
   }
 
   fetchRecipes() {
+    
     console.log(this.searchQuery)
     if (this.searchQuery != "" && this.searchQuery != null) {
       this.recipeService.getRecipeByNamePageable(this.searchQuery, this.currentPage, this.pageSize).subscribe({
@@ -38,7 +40,8 @@ export class RecipeListComponent {
           this.currentPage = response.number; // Página actual
         },
         error: (error) => {
-          console.error('Error loading recipes with search query:', error);
+          this.alertService.showErrorMessage("Error al cargar las recetas paginadas")
+          this.currentPage = -1;
         }
       });
     } if(this.searchQuery == "" || this.searchQuery == null) {
@@ -49,7 +52,8 @@ export class RecipeListComponent {
           this.currentPage = response.number; // Página actual
         },
         error: (error) => {
-          console.error('Error loading recipes:', error);
+          this.alertService.showErrorMessage("Error al cargar las recetas")
+          this.currentPage = -1;
         }
       });
     }
